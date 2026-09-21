@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Практика 4</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+        }
+
+        #counter {
+            font-size: 40px;
+            color: gray;
+        }
+
+        .number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            border-radius: 50%;
+            background-color: lightblue;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Практика 4</h1>
+
+<h2>Counter</h2>
+
+<div id="counter">0</div>
+
+<button onclick="plus()">Увеличить</button>
+<button onclick="zero()">Сбросить</button>
+<button onclick="minus()">Уменьшить</button>
+
+
+<h2>Лото</h2>
+
+<button onclick="lotto()">Сгенерировать</button>
+
+<div id="numbers"></div>
+
+
+<script>
+
+// Counter
+
+let count = 0;
+
+function showCounter() {
+    let counter = document.getElementById("counter");
+
+    counter.innerHTML = count;
+
+    if (count > 0) {
+        counter.style.color = "green";
+    }
+
+    if (count == 0) {
+        counter.style.color = "gray";
+    }
+
+    if (count < 0) {
+        counter.style.color = "red";
+    }
+}
+
+function plus() {
+    count++;
+    showCounter();
+}
+
+function zero() {
+    count = 0;
+    showCounter();
+}
+
+function minus() {
+    count--;
+    showCounter();
+}
+
+
+// Лото
+
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function lotto() {
+    let numbers = document.getElementById("numbers");
+
+    numbers.innerHTML = "";
+
+    for (let i = 0; i < 6; i++) {
+
+        let number = getRandomInt(1, 99);
+
+        if (number < 10) {
+            number = "0" + number;
+        }
+
+        let circle = document.createElement("div");
+
+        circle.className = "number";
+        circle.innerHTML = number;
+
+        numbers.appendChild(circle);
+    }
+}
+
+</script>
+
+</body>
+</html>
